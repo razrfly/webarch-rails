@@ -1,0 +1,23 @@
+/*
+ *= require ../webarch-deps/pace/pace-theme-flash
+ *
+ *  require ../webarch-deps/bootstrap-select2/select2
+ *= require ../webarch-deps/select2-3.4.8/select2
+ *= require ../webarch-deps/select2-3.4.8/select2-bootstrap
+ *
+ *= require ../webarch-deps/jquery-slider/css/jquery.sidr.light
+ *
+ *= require bootstrap/bootstrap_and_overrides
+ *
+ *= require ../webarch-deps/jquery-datatable/css/jquery.dataTables
+ *= require ../webarch-deps/boostrap-checkbox/css/bootstrap-checkbox
+ *= require ../webarch-deps/datatables-responsive/css/datatables.responsive
+ *
+ *= require ../webarch-deps/font-awesome/css/font-awesome
+ *= require webarch/animate.min
+ *= require webarch/style
+ *= require webarch/responsive
+ *= require webarch/custom-icon-set
+ *
+ *= require overrides/user-menu
+ */
