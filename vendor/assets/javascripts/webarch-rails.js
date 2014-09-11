@@ -1,5 +1,6 @@
 //
 //= require twitter/bootstrap
+//= require bootstrap/bootstrap
 //
 //= require ../webarch-deps/breakpoints/breakpoints
 //= require ../webarch-deps/jquery-unveil/jquery.unveil.min
