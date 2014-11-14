@@ -213,15 +213,15 @@ $(document).ready(function () {
     }
     $('.tip').tooltip();
     //***********************************BEGIN Horinzontal Menu*****************************
-    $('.horizontal-menu .bar-inner > ul > li').on('click', function () {
-        $(this).toggleClass('open').siblings().removeClass('open');
+    // $('.horizontal-menu .bar-inner > ul > li').on('click', function () {
+    //     $(this).toggleClass('open').siblings().removeClass('open');
 
-    });
-     if($('body').hasClass('horizontal-menu')){
-        $('.content').on('click', function () {
-            $('.horizontal-menu .bar-inner > ul > li').removeClass('open');
-        });
-     }
+    // });
+    //  if($('body').hasClass('horizontal-menu')){
+    //     $('.content').on('click', function () {
+    //         $('.horizontal-menu .bar-inner > ul > li').removeClass('open');
+    //     });
+    //  }
     //***********************************END Horinzontal Menu*****************************
     //***********************************BEGIN Lazyload images*****************************	
     if ($.fn.lazyload) {
