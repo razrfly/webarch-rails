@@ -86,20 +86,20 @@ $(document).ready(function () {
         $('#my-task-list').popover('hide');
     });
     //*********************************** BEGIN CHAT POPUP*****************************
-    if($('body').hasClass('rtl')){
-        $('.chat-menu-toggle').sidr({
-        name: 'sidr',
-        side: 'left',
-        complete: function () {}
-        });
-    }
-    else{
-        $('.chat-menu-toggle').sidr({
-            name: 'sidr',
-            side: 'right',
-            complete: function () {}
-        });        
-    }
+//    if($('body').hasClass('rtl')){
+//        $('.chat-menu-toggle').sidr({
+//        name: 'sidr',
+//        side: 'left',
+//        complete: function () {}
+//        });
+//    }
+//    else{
+//        $('.chat-menu-toggle').sidr({
+//            name: 'sidr',
+//            side: 'right',
+//            complete: function () {}
+//        });        
+//    }
     $(".simple-chat-popup").click(function () {
         $(this).addClass('hide');
         $('#chat-message-count').addClass('hide');
@@ -197,49 +197,31 @@ $(document).ready(function () {
         $('[data-sync-height="true"]').each(function () {
             equalHeight($(this).children());
         });
-        if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
-        $('#main-menu-wrapper').slimScroll({resize: true});
-         $('#inner-menu').slimScroll({resize: true});
-        }
+
     });
-    initMainMenu();
+    $('#main-menu-wrapper').scrollbar();
+   // initMainMenu();
     //***********************************BEGIN Fixed Menu*****************************
     function initMainMenu() {
-        var eleHeight = window.innerHeight-105;
-        if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
-            $('#main-menu-wrapper').slimScroll({
-                color: '#a1b2bd',
-                size: '4px',
-                height: eleHeight,
-                alwaysVisible: false
-            });
-        }
+
         
     }
     initExtendedLayoutMenuScroll();
     function initExtendedLayoutMenuScroll(){
-        var eleHeight = window.innerHeight;
-        if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
-            $('#inner-menu').slimScroll({
-                color: '#a1b2bd',
-                size: '4px',
-                height: eleHeight,
-                alwaysVisible: false
-            });
-        }
+
 
     }
     $('.tip').tooltip();
     //***********************************BEGIN Horinzontal Menu*****************************
-    // $('.horizontal-menu .bar-inner > ul > li').on('click', function () {
-    //     $(this).toggleClass('open').siblings().removeClass('open');
+    $('.horizontal-menu .bar-inner > ul > li').on('click', function () {
+        $(this).toggleClass('open').siblings().removeClass('open');
 
-    // });
-    //  if($('body').hasClass('horizontal-menu')){
-    //     $('.content').on('click', function () {
-    //         $('.horizontal-menu .bar-inner > ul > li').removeClass('open');
-    //     });
-    //  }
+    });
+     if($('body').hasClass('horizontal-menu')){
+        $('.content').on('click', function () {
+            $('.horizontal-menu .bar-inner > ul > li').removeClass('open');
+        });
+     }
     //***********************************END Horinzontal Menu*****************************
     //***********************************BEGIN Lazyload images*****************************	
     if ($.fn.lazyload) {
@@ -387,30 +369,28 @@ $(document).ready(function () {
     function closeAndRestSider() {
         if ($('#main-menu').attr('data-inner-menu') == '1') {
             $('#main-menu').addClass("mini");
-            $.sidr('close', 'main-menu');
-            $.sidr('close', 'sidr');
-            $('#main-menu').removeClass("sidr");
             $('#main-menu').removeClass("left");
         } else {
-            $.sidr('close', 'main-menu');
-            $.sidr('close', 'sidr');
-            $('#main-menu').removeClass("sidr");
             $('#main-menu').removeClass("left");
         }
 
     }
+    $('#main-menu-toggle').on('touchstart click', function (e) {
+     e.preventDefault();
+    toggleMainMenu();
+    });
+    $('#chat-menu-toggle, .chat-menu-toggle').on('touchstart click', function (e) {
+        e.preventDefault();
+       toggleChat();
+    });
 
     function rebuildSider() {
-        $('#main-menu-toggle').sidr({
-            name: 'main-menu',
-            side: 'left'
-        });
+
     }
     //***********************************END Function calls *****************************	
 
     //***********************************BEGIN Main Menu Toggle *****************************	
     $('#layout-condensed-toggle').click(function () {
-        $.sidr('close', 'sidr');
         if ($('#main-menu').attr('data-inner-menu') == '1') {
             //Do nothing
             console.log("Menu is already condensed");
@@ -432,6 +412,7 @@ $(document).ready(function () {
                 $('.scrollup').addClass('to-edge');
                 $('.header-seperation').hide();
                 $('.footer-widget').hide();
+                $('.main-menu-wrapper').scrollbar('destroy');
             }
         }
     });
@@ -445,14 +426,16 @@ $(document).ready(function () {
     
     //***********************************BEGIN Slimscroller *****************************		
     $('.scroller').each(function () {
-        $(this).slimScroll({
-            size: '7px',
-            color: '#a1b2bd',
-            height: $(this).attr("data-height"),
-            alwaysVisible: ($(this).attr("data-always-visible") == "1" ? true : false),
-            railVisible: ($(this).attr("data-rail-visible") == "1" ? true : false),
-            disableFadeOut: true
+        var h = $(this).attr('data-height');
+        $(this).scrollbar({
+            ignoreMobile:true
         });
+        if(h != null  || h !=""){
+            if($(this).parent('.scroll-wrapper').length > 0)
+                $(this).parent().css('max-height',h);
+            else
+                $(this).css('max-height',h);
+        }
     });
     //***********************************END Slimscroller *****************************	
 
@@ -565,15 +548,50 @@ $(document).ready(function () {
     $("img").unveil();
 });
 $(window).resize(function () {
-    $.sidr('close', 'sidr');
+   
 });
 
 function calculateHeight() {
     var contentHeight = parseInt($('.page-content').height(), 10);
-    if (911 > contentHeight) {
-        console.log("Small");
+}
+    
+function toggleMainMenu(){
+    var timer;
+    if($('body').hasClass('open-menu-left')){
+        $('body').removeClass('open-menu-left');
+        timer= setTimeout(function(){
+            $('.page-sidebar').removeClass('visible');
+        }, 300);
+        
+    }
+    else{
+        clearTimeout(timer);
+        $('.page-sidebar').addClass('visible');
+        setTimeout(function(){
+             $('body').addClass('open-menu-left');
+        }, 50);
+       
     }
 }
+function toggleChat(){
+         var timer;
+         if($('body').hasClass('open-menu-right')){
+            $('body').removeClass('open-menu-right');
+            timer= setTimeout(function(){
+                $('.chat-window-wrapper').removeClass('visible');
+            }, 300);
+           
+        }
+        else{ 
+            clearTimeout(timer);
+            $('.chat-window-wrapper').addClass('visible');
+            $('body').addClass('open-menu-right');
+        } 
+}
+
+$('body.open-menu-left .page-content').on('touchstart', function (e) {
+    alert("asd");
+});
 //******************************* Bind Functions Jquery- LAYOUT OPTIONS API ***************
 
 (function ($) {
@@ -607,10 +625,7 @@ function calculateHeight() {
     };
 
     $.fn.toggleChat = function () {
-        if ($.fn.unveil) {
-            if ($(this).hasClass('sidr')) $.sidr('open', 'sidr');
-            else $.sidr('close', 'sidr');
-        }
+        toggleChat();
     };
     $.fn.layoutReset = function () {
         $(this).removeClass('hide-sidebar');
