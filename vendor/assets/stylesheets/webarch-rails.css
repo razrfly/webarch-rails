@@ -14,6 +14,9 @@
  *= require ../webarch-deps/datatables-responsive/css/datatables.responsive
  *
  *= require webarch/animate.min
+ *
+ *= require ../webarch-deps/jquery-scrollbar/jquery.scrollbar
+ *
  *= require webarch/style
  *= require webarch/responsive
  *= require webarch/custom-icon-set

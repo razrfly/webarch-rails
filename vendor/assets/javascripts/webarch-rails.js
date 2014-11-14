@@ -8,7 +8,10 @@
 //
 //= require ../webarch-deps/jquery-block-ui/jqueryblockui
 //= require ../webarch-deps/jquery-slider/jquery.sidr.min
-//= require ../webarch-deps/jquery-slimscroll/jquery.slimscroll.min
+
+// require ../webarch-deps/jquery-slimscroll/jquery.slimscroll.min
+//= require ../webarch-deps/jquery-scrollbar/jquery.scrollbar.min
+
 //= require ../webarch-deps/pace/pace.min
 //= require ../webarch-deps/jquery-numberAnimate/jquery.animateNumbers
 //
