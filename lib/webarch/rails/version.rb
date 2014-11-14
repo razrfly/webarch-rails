@@ -1,5 +1,5 @@
 module Webarch
   module Rails
-    VERSION = "2.7.1.1"
+    VERSION = "2.7.1.2"
   end
 end
