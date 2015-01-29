@@ -7,7 +7,7 @@
  *
  *= require ../webarch-deps/jquery-slider/css/jquery.sidr.light
  *
- *= require bootstrap/bootstrap_and_overrides
+ *= require ./bs
  *
  *= require ../webarch-deps/jquery-datatable/css/jquery.dataTables
  *= require ../webarch-deps/boostrap-checkbox/css/bootstrap-checkbox
