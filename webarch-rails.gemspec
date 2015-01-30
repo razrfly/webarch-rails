@@ -20,4 +20,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake"
 
   spec.add_dependency 'bootstrap-sass', '~> 3.2.0'
+  spec.add_dependency 'font-awesome-sass', '~> 4.2.0'
 end
